@@ -1,0 +1,32 @@
+// Definición de la clase Persona
+function Persona(nombre, edad, cedula) {
+  this.nombre = nombre;
+  this.edad = edad;
+  this.cedula = cedula;
+
+  // Método para mostrar los datos de la persona
+  this.mostrar = function () {
+    console.log(`Nombre: ${this.nombre}`);
+    console.log(`Edad: ${this.edad}`);
+    console.log(`Cédula: ${this.cedula}`);
+  };
+
+  // Método para verificar si es mayor de edad
+  this.es_mayor_de_edad = function () {
+    return this.edad >= 18;
+  };
+}
+
+// Crear una instancia de Persona
+const persona1 = new Persona("Juan", 25, "1234567890");
+
+// Llamar al método mostrar para mostrar los datos
+persona1.mostrar();
+
+// Llamar al método es_mayor_de_edad para verificar si es mayor de edad
+const esMayor = persona1.es_mayor_de_edad();
+if (esMayor) {
+  console.log(`${persona1.nombre} es mayor de edad.`);
+} else {
+  console.log(`${persona1.nombre} no es mayor de edad.`);
+}
