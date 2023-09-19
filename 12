@@ -1,0 +1,53 @@
+class Enterprise {
+  constructor() {
+    this.potencia = 50;
+    this.coraza = 5;
+  }
+
+  obtenerPotencia() {
+    return this.potencia;
+  }
+
+  obtenerCoraza() {
+    return this.coraza;
+  }
+
+  encontrarPilaAtomica() {
+    this.potencia = Math.min(100, this.potencia + 25);
+  }
+
+  encontrarEscudo() {
+    this.coraza = Math.min(20, this.coraza + 10);
+  }
+
+  recibirAtaque(puntos) {
+    if (this.coraza > 0) {
+      if (this.coraza >= puntos) {
+        this.coraza -= puntos;
+      } else {
+        this.potencia -= (puntos - this.coraza);
+        this.coraza = 0;
+      }
+    } else {
+      this.potencia -= puntos;
+    }
+
+    this.potencia = Math.max(0, this.potencia);
+    this.coraza = Math.max(0, this.coraza);
+  }
+}
+
+// Ejemplo de uso
+const enterprise = new Enterprise();
+console.log("Potencia inicial:", enterprise.obtenerPotencia());
+console.log("Coraza inicial:", enterprise.obtenerCoraza());
+
+enterprise.encontrarPilaAtomica();
+console.log("Potencia después de encontrar la pila atómica:", enterprise.obtenerPotencia());
+
+enterprise.encontrarEscudo();
+console.log("Coraza después de encontrar el escudo:", enterprise.obtenerCoraza());
+
+enterprise.recibirAtaque(20);
+console.log("Potencia después de recibir un ataque:", enterprise.obtenerPotencia());
+console.log("Coraza después de recibir un ataque:", enterprise.obtenerCoraza());
