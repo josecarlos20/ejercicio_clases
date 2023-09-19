@@ -1,0 +1,33 @@
+function Calculadora() {
+  this.valorActual = 0;
+
+  this.cargar = function(numero) {
+    this.valorActual = numero;
+  };
+
+  this.sumar = function(numero) {
+    this.valorActual += numero;
+  };
+
+  this.restar = function(numero) {
+    this.valorActual -= numero;
+  };
+
+  this.multiplicar = function(numero) {
+    this.valorActual *= numero;
+  };
+
+  this.obtenerValorActual = function() {
+    return this.valorActual;
+  };
+}
+
+// Ejemplo de uso
+const calculadora = new Calculadora();
+calculadora.cargar(0);
+calculadora.sumar(4);
+calculadora.multiplicar(5);
+calculadora.restar(8);
+calculadora.multiplicar(2);
+console.log(calculadora.obtenerValorActual()); // Debería mostrar 24
+
