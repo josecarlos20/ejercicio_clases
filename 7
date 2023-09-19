@@ -1,32 +1,32 @@
 const contador = {
   valor: 0,
-  ultimoComando: "",
+  ultimoComandoGuardado: "",
 
   reset: function() {
-    this.ultimoComando = "reset";
+    this.ultimoComandoGuardado = "reset";
     this.valor = 0;
   },
 
   inc: function() {
-    this.ultimoComando = "incremento";
+    this.ultimoComandoGuardado = "incremento";
     this.valor++;
   },
 
   dec: function() {
-    this.ultimoComando = "decremento";
+    this.ultimoComandoGuardado = "decremento";
     this.valor--;
   },
 
   valorActual: function() {
     if (arguments.length === 1) {
-      this.ultimoComando = "actualizacion";
+      this.ultimoComandoGuardado = "actualizacion";
       this.valor = arguments[0];
     }
     return this.valor;
   },
 
   ultimoComando: function() {
-    return this.ultimoComando;
+    return this.ultimoComandoGuardado;
   }
 };
 
