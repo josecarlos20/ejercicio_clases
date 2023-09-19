@@ -1,0 +1,49 @@
+// Definición de la clase Cuenta
+function Cuenta(titular, cantidad = 0) {
+  this.titular = titular;
+  this.cantidad = cantidad;
+
+  // Método para mostrar los datos de la cuenta
+  this.mostrar = function () {
+    console.log(`Titular: ${this.titular}`);
+    console.log(`Cantidad: ${this.cantidad}`);
+  };
+
+  // Método para ingresar una cantidad a la cuenta
+  this.ingresar = function (cantidad) {
+    if (cantidad > 0) {
+      this.cantidad += cantidad;
+      console.log(`Se han ingresado ${cantidad} a la cuenta.`);
+    } else {
+      console.log("La cantidad ingresada debe ser mayor que cero.");
+    }
+  };
+
+  // Método para retirar una cantidad de la cuenta
+  this.retirar = function (cantidad) {
+    if (cantidad > 0) {
+      if (this.cantidad >= cantidad) {
+        this.cantidad -= cantidad;
+        console.log(`Se han retirado ${cantidad} de la cuenta.`);
+      } else {
+        console.log("No tienes suficiente saldo en la cuenta.");
+      }
+    } else {
+      console.log("La cantidad a retirar debe ser mayor que cero.");
+    }
+  };
+}
+
+// Crear una instancia de Cuenta
+const cuenta1 = new Cuenta("Juan", 1000);
+
+// Mostrar los datos de la cuenta
+cuenta1.mostrar();
+
+// Realizar operaciones de ingreso y retiro
+cuenta1.ingresar(500);
+cuenta1.retirar(200);
+cuenta1.retirar(1500);
+
+// Mostrar los datos de la cuenta después de las operaciones
+cuenta1.mostrar();
