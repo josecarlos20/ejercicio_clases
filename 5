@@ -1,0 +1,69 @@
+// Definición de la clase Contraseña
+function Contraseña(longitud, contraseña = "") {
+  this.longitud = longitud;
+  this.contraseña = contraseña;
+
+  // Método para verificar si la contraseña es fuerte
+  this.esFuerte = function () {
+    // Contadores para mayúsculas, minúsculas y números
+    let mayusculas = 0;
+    let minusculas = 0;
+    let numeros = 0;
+
+    for (let i = 0; i < this.contraseña.length; i++) {
+      const caracter = this.contraseña.charAt(i);
+      if (/[A-Z]/.test(caracter)) {
+        mayusculas++;
+      } else if (/[a-z]/.test(caracter)) {
+        minusculas++;
+      } else if (/[0-9]/.test(caracter)) {
+        numeros++;
+      }
+    }
+
+    return mayusculas > 2 && minusculas > 1 && numeros > 5;
+  };
+
+  // Método para generar una contraseña aleatoria con la longitud especificada
+  this.generarPassword = function () {
+    const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let nuevaContraseña = "";
+
+    for (let i = 0; i < this.longitud; i++) {
+      const indice = Math.floor(Math.random() * caracteres.length);
+      nuevaContraseña += caracteres.charAt(indice);
+    }
+
+    this.contraseña = nuevaContraseña;
+  };
+
+  // Método para determinar la seguridad de la contraseña
+  this.seguridadPassword = function () {
+    if (this.longitud >= 1 && this.longitud <= 6) {
+      return "Débil";
+    } else if (this.longitud >= 7 && this.longitud <= 10) {
+      return "Media";
+    } else if (this.longitud >= 11 && this.longitud <= 20) {
+      return "Fuerte";
+    } else {
+      return "Inválida";
+    }
+  };
+}
+
+// Crear una instancia de Contraseña
+const contraseña1 = new Contraseña(12);
+
+// Generar una contraseña aleatoria
+contraseña1.generarPassword();
+
+// Mostrar la contraseña generada
+console.log("Contraseña generada:", contraseña1.contraseña);
+
+// Verificar si la contraseña es fuerte
+const esFuerte = contraseña1.esFuerte();
+console.log("Es fuerte:", esFuerte);
+
+// Determinar la seguridad de la contraseña
+const seguridad = contraseña1.seguridadPassword();
+console.log("Seguridad de la contraseña:", seguridad);
