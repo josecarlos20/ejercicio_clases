@@ -1,0 +1,41 @@
+class Libro {
+  constructor(titulo, autor, numEjemplares) {
+    this.titulo = titulo;
+    this.autor = autor;
+    this.numEjemplares = numEjemplares;
+    this.numEjemplaresPrestados = 0;
+  }
+
+  prestamo() {
+    if (this.numEjemplares - this.numEjemplaresPrestados > 0) {
+      this.numEjemplaresPrestados++;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  devolucion() {
+    if (this.numEjemplaresPrestados > 0) {
+      this.numEjemplaresPrestados--;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  toString() {
+    return `Título: ${this.titulo}, Autor: ${this.autor}, Ejemplares disponibles: ${this.numEjemplares - this.numEjemplaresPrestados}, Ejemplares prestados: ${this.numEjemplaresPrestados}`;
+  }
+}
+
+// Ejemplo de uso
+const libro1 = new Libro("Don Quijote", "Miguel de Cervantes", 10);
+console.log(libro1.toString());
+
+libro1.prestamo();
+libro1.prestamo();
+console.log(libro1.toString());
+
+libro1.devolucion();
+console.log(libro1.toString());
