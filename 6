@@ -1,0 +1,37 @@
+// Definición del objeto Contador
+const Contador = {
+  valor: 0,
+
+  // Método para resetear el contador (ponerlo en cero)
+  reset: function () {
+    this.valor = 0;
+  },
+
+  // Método para incrementar el contador en 1
+  inc: function () {
+    this.valor++;
+  },
+
+  // Método para decrementar el contador en 1
+  dec: function () {
+    this.valor--;
+  },
+
+  // Método para obtener el valor actual del contador
+  valorActual: function () {
+    return this.valor;
+  },
+
+  // Método para establecer un nuevo valor para el contador
+  valorActual: function (nuevoValor) {
+    this.valor = nuevoValor;
+  }
+};
+
+// Ejemplo de uso del objeto Contador
+Contador.valorActual(10);
+Contador.inc();
+Contador.inc();
+Contador.dec();
+Contador.inc();
+console.log("Valor actual del contador:", Contador.valorActual()); // Debería mostrar 12
