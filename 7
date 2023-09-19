@@ -1,0 +1,40 @@
+const contador = {
+  valor: 0,
+  ultimoComando: "",
+
+  reset: function() {
+    this.ultimoComando = "reset";
+    this.valor = 0;
+  },
+
+  inc: function() {
+    this.ultimoComando = "incremento";
+    this.valor++;
+  },
+
+  dec: function() {
+    this.ultimoComando = "decremento";
+    this.valor--;
+  },
+
+  valorActual: function() {
+    if (arguments.length === 1) {
+      this.ultimoComando = "actualizacion";
+      this.valor = arguments[0];
+    }
+    return this.valor;
+  },
+
+  ultimoComando: function() {
+    return this.ultimoComando;
+  }
+};
+
+contador.valorActual(10);
+contador.inc();
+contador.inc();
+contador.dec();
+contador.inc();
+
+console.log(contador.valorActual()); // Debería mostrar 12
+console.log(contador.ultimoComando()); // Debería mostrar "incremento"
