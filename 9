@@ -1,0 +1,48 @@
+function Chimuela() {
+  this.energia = 0;
+
+  this.comer = function(gramos) {
+    // Chimuela adquiere 4 joules por cada gramo de comida
+    this.energia += 4 * gramos;
+  };
+
+  this.volar = function(kilometros) {
+    // Chimuela gasta 1 joule por cada kilómetro de vuelo
+    // más 10 joules de costo de despegue y aterrizaje
+    this.energia -= (1 * kilometros + 10);
+  };
+
+  this.obtenerEnergia = function() {
+    return this.energia;
+  };
+
+  this.estaDebil = function() {
+    return this.energia < 50;
+  };
+
+  this.estaFeliz = function() {
+    return this.energia >= 500 && this.energia <= 1000;
+  };
+
+  this.cuantoQuiereVolar = function() {
+    let quiereVolar = this.energia / 5;
+
+    if (this.energia >= 300 && this.energia <= 400) {
+      quiereVolar += 10;
+    }
+
+    if (this.energia % 20 === 0) {
+      quiereVolar += 15;
+    }
+
+    return quiereVolar;
+  };
+}
+
+// Ejemplo de uso
+const chimuela = new Chimuela();
+chimuela.comer(85);
+
+console.log(chimuela.estaDebil()); // Debería mostrar true
+console.log(chimuela.estaFeliz()); // Debería mostrar false
+console.log(chimuela.cuantoQuiereVolar()); // Debería mostrar 91
