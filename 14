@@ -1,0 +1,69 @@
+class MotorPrototipo {
+  constructor() {
+    this.cambio = 1; // Inicia en primera
+    this.rpm = 500; // Inicia con 500 RPM
+  }
+
+  arrancar() {
+    this.cambio = 1; // Arranca en primera
+    this.rpm = 500; // Inicia con 500 RPM
+  }
+
+  subirCambio() {
+    if (this.cambio < 5) {
+      this.cambio++;
+    }
+  }
+
+  bajarCambio() {
+    if (this.cambio > 1) {
+      this.cambio--;
+    }
+  }
+
+  subirRPM(cuantos) {
+    this.rpm += cuantos;
+    this.rpm = Math.min(5000, this.rpm); // Máximo 5000 RPM
+  }
+
+  bajarRPM(cuantos) {
+    this.rpm -= cuantos;
+    this.rpm = Math.max(0, this.rpm); // Mínimo 0 RPM
+  }
+
+  velocidad() {
+    return (this.rpm / 100) * (0.5 + (this.cambio / 2));
+  }
+
+  consumoActualPorKm() {
+    let consumo = 0.05; // Consumo base
+
+    if (this.rpm > 3000) {
+      consumo *= (this.rpm - 2500) / 500;
+    }
+
+    if (this.cambio === 1) {
+      consumo *= 3;
+    } else if (this.cambio === 2) {
+      consumo *= 2;
+    }
+
+    return consumo;
+  }
+}
+
+// Ejemplo de uso
+const motor = new MotorPrototipo();
+motor.arrancar();
+
+console.log("Velocidad:", motor.velocidad());
+console.log("Consumo Actual Por Km:", motor.consumoActualPorKm());
+
+motor.subirCambio();
+motor.subirRPM(2000);
+console.log("Velocidad:", motor.velocidad());
+console.log("Consumo Actual Por Km:", motor.consumoActualPorKm());
+
+motor.bajarRPM(1500);
+console.log("Velocidad:", motor.velocidad());
+console.log("Consumo Actual Por Km:", motor.consumoActualPorKm());
