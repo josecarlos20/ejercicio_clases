@@ -1,0 +1,69 @@
+// Definición de la clase Persona
+function Persona(nombre, edad, DNI, sexo, peso, altura) {
+  this.nombre = nombre;
+  this.edad = edad;
+  this.DNI = DNI;
+  this.sexo = comprobarSexo(sexo);
+  this.peso = peso;
+  this.altura = altura;
+
+  // Método para calcular el IMC (Índice de Masa Corporal)
+  this.calcularIMC = function () {
+    const alturaEnMetros = this.altura / 100; // Convertir altura a metros
+    const imc = this.peso / (alturaEnMetros * alturaEnMetros);
+
+    if (imc < 20) {
+      return -1; // Bajo peso
+    } else if (imc >= 20 && imc <= 25) {
+      return 0; // Peso ideal
+    } else {
+      return 1; // Sobrepeso
+    }
+  };
+
+  // Método para verificar si es mayor de edad
+  this.esMayorDeEdad = function () {
+    return this.edad >= 18;
+  };
+
+  // Método para comprobar el sexo
+  function comprobarSexo(sexo) {
+    // Si el sexo no es 'H' ni 'M', se establece como 'H' por defecto
+    if (sexo !== 'H' && sexo !== 'M') {
+      return 'H';
+    }
+    return sexo;
+  }
+}
+
+// Constantes para el IMC
+const BAJO_PESO = -1;
+const PESO_IDEAL = 0;
+const SOBREPESO = 1;
+
+// Crear una instancia de Persona
+const persona1 = new Persona("Juan", 25, "123456789X", "H", 70, 175);
+
+// Calcular el IMC
+const imc = persona1.calcularIMC();
+let estadoIMC = "";
+if (imc === BAJO_PESO) {
+  estadoIMC = "Bajo peso";
+} else if (imc === PESO_IDEAL) {
+  estadoIMC = "Peso ideal";
+} else {
+  estadoIMC = "Sobrepeso";
+}
+
+// Verificar si es mayor de edad
+const mayorDeEdad = persona1.esMayorDeEdad() ? "Mayor de edad" : "Menor de edad";
+
+// Mostrar los datos de la persona y resultados
+console.log(`Nombre: ${persona1.nombre}`);
+console.log(`Edad: ${persona1.edad} años`);
+console.log(`DNI: ${persona1.DNI}`);
+console.log(`Sexo: ${persona1.sexo}`);
+console.log(`Peso: ${persona1.peso} kg`);
+console.log(`Altura: ${persona1.altura} cm`);
+console.log(`IMC: ${estadoIMC}`);
+console.log(`Estado: ${mayorDeEdad}`);
